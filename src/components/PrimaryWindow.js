@@ -31,6 +31,7 @@ export class PrimaryWindow extends Component {
       audioResources, isCollection,
       isFetching, videoResources, view, windowId,
     } = this.props;
+   
     if (isCollection) {
       return (
         <SelectCollection

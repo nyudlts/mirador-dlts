@@ -22,7 +22,7 @@ export class ManifestInfo extends Component {
       id,
       t,
     } = this.props;
-
+console.log(manifestDescription)
     return (
       <CollapsibleSection
         id={`${id}-resource`}

@@ -27,7 +27,6 @@ export class CompanionWindowFactory extends Component {
    */
   componentDidUpdate(prevProps) {
     const { content } = this.props;
-
     // Typical usage (don't forget to compare props):
     if (content !== prevProps.content) {
       this.setState({ // eslint-disable-line react/no-did-update-set-state
@@ -45,7 +44,7 @@ export class CompanionWindowFactory extends Component {
       t,
     } = this.props;
     const { error, hasError } = this.state;
-
+    console.log(content);
     if (hasError) {
       return (
         <CompanionWindow

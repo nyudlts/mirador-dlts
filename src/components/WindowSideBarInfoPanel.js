@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import CompanionWindow from '../containers/CompanionWindow';
-import CanvasInfo from '../containers/CanvasInfo';
-import LocalePicker from '../containers/LocalePicker';
-import ManifestInfo from '../containers/ManifestInfo';
-import CollectionInfo from '../containers/CollectionInfo';
-import ManifestRelatedLinks from '../containers/ManifestRelatedLinks';
-import ns from '../config/css-ns';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import CompanionWindow from "../containers/CompanionWindow";
+import CanvasInfo from "../containers/CanvasInfo";
+import LocalePicker from "../containers/LocalePicker";
+import ManifestInfo from "../containers/ManifestInfo";
+import CollectionInfo from "../containers/CollectionInfo";
+import ManifestRelatedLinks from "../containers/ManifestRelatedLinks";
+import ns from "../config/css-ns";
+import { LanguageDropdown } from "./LanguageDropdown";
 
 /**
  * WindowSideBarInfoPanel
@@ -17,7 +18,7 @@ export class WindowSideBarInfoPanel extends Component {
    * @return
    */
   render() {
-    const {
+    let {
       windowId,
       id,
       canvasIds,
@@ -32,35 +33,34 @@ export class WindowSideBarInfoPanel extends Component {
 
     return (
       <CompanionWindow
-        title={t('aboutThisItem')}
-        paperClassName={ns('window-sidebar-info-panel')}
+        title={t("aboutThisItem")}
+        paperClassName={ns("window-sidebar-info-panel")}
         windowId={windowId}
         id={id}
-        titleControls={(
-          showLocalePicker
-            && (
+        titleControls={
+          showLocalePicker && (
             <LocalePicker
               locale={locale}
               setLocale={setLocale}
               availableLocales={availableLocales}
             />
-            )
-        )}
-      >
-        {
-          canvasIds.map((canvasId, index) => (
-            <div key={canvasId} className={classes.section}>
-              <CanvasInfo
-                id={id}
-                canvasId={canvasId}
-                index={index}
-                totalSize={canvasIds.length}
-                windowId={windowId}
-              />
-            </div>
-          ))
+          )
         }
-        { collectionPath.length > 0 && (
+      >
+        <LanguageDropdown />
+        {canvasIds.map((canvasId, index) => {
+          <div key={canvasId} className={classes.section}>
+            <CanvasInfo
+              id={id}
+              canvasId={canvasId}
+              index={index}
+              totalSize={canvasIds.length}
+              windowId={windowId}
+            />
+          </div>;
+        })}
+
+        {collectionPath.length > 0 && (
           <div className={classes.section}>
             <CollectionInfo id={id} windowId={windowId} />
           </div>
@@ -96,8 +96,8 @@ WindowSideBarInfoPanel.defaultProps = {
   canvasIds: [],
   classes: {},
   collectionPath: [],
-  locale: '',
+  locale: "",
   setLocale: undefined,
   showLocalePicker: false,
-  t: key => key,
+  t: (key) => key,
 };
