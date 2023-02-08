@@ -18,7 +18,7 @@ export class WindowSideBarInfoPanel extends Component {
    * @return
    */
   render() {
-    let {
+    const {
       windowId,
       id,
       canvasIds,
